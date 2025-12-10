@@ -1,5 +1,6 @@
 import pandas as pd
-from joblib import load #only use this for loading saved model and scaler
+import joblib #only use this for loading saved model and scaler
+import numpy as np
 
 # 1. Load model và scaler đã lưu
 # Cheat file
@@ -7,8 +8,8 @@ from joblib import load #only use this for loading saved model and scaler
 # scaler = load("./scaler.pkl")
 
 # File made from scratch
-model = load("./logistic_model_2.pkl")
-scaler = load("./scaler_2.pkl")
+model = joblib.load("./logistic_model_2.pkl")
+scaler = joblib.load("./scaler_2.pkl")
 
 print("=== Dự đoán nguy cơ tử vong do Heart Failure cho 1 bệnh nhân mới ===")
 
@@ -41,8 +42,27 @@ new_patient = pd.DataFrame([[
 new_patient_scaled = scaler.transform(new_patient)
 
 # 5. Dự đoán và xác suất
-prediction = model.predict(new_patient_scaled)[0]
-probability = model.predict_proba(new_patient_scaled)[0][1]
+
+# Prediction if built in joblib model
+# prediction = model.predict(new_patient_scaled)[0]
+# probability = model.predict_proba(new_patient_scaled)[0][1]
+
+# Prediction if custom model from scratch
+raw_pred = model.predict(new_patient_scaled)
+if hasattr(raw_pred, '__len__') and not isinstance(raw_pred, str):
+    prediction = int(raw_pred[0])
+else:
+    prediction = int(raw_pred)
+
+# Get probability for the positive class
+raw_prob = model.predict_proba(new_patient_scaled)
+prob_arr = np.array(raw_prob)
+if prob_arr.ndim == 2 and prob_arr.shape[1] >= 2:
+    probability = float(prob_arr[0, 1])
+elif prob_arr.ndim == 1:
+    probability = float(prob_arr.ravel()[0])
+else:
+    probability = float(prob_arr)
 
 # 6. Hiển thị kết quả
 print("\n=== Kết quả dự đoán ===")
