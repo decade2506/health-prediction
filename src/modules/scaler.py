@@ -1,16 +1,17 @@
 #Template scaler for 1 dimensional only
 #Might need to improve for multi-dimensional data
-class MyScaler:
+import numpy as np
+class MyScaler: #Scaler is so confusing
     def __init__(self):
-        pass
-    def scaler(self, x): #Chuẩn hóa từ 0 đến 1
-        x_min = min(x)
-        x_max = max(x)
-        scaled_x = []
-        for i in x:
-            new_x = (i - x_min) / (x_max - x_min)
-            scaled_x.append(new_x)
-        return scaled_x
-x = [6, 3, 9, 8, 7]
-scaler = MyScaler()
-print(scaler.scaler(x))
+        self.mean = None
+        self.std = None
+    def fit(self, x): #Chuẩn hóa từ 0 đến 1
+        x = list(x)
+        self.mean = np.mean(x)
+        self.std = np.std(x)
+        return self
+    def transform(self, x):
+        return (x - self.mean) / self.std
+    def fit_transform(self, x):
+        self.fit(x)
+        return self.transform(x)
