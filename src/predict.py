@@ -1,27 +1,27 @@
 import pandas as pd
-import joblib
+from joblib import load #only use this for loading saved model and scaler
 
 # 1. Load model và scaler đã lưu
-model = joblib.load("./logistic_model.pkl")
-scaler = joblib.load("./scaler.pkl")
+model = load("./logistic_model.pkl")
+scaler = load("./scaler.pkl")
 
 print("=== Dự đoán nguy cơ tử vong do Heart Failure cho 1 bệnh nhân mới ===")
 
 # 2. Nhập thông số bệnh nhân từ người dùng
 age = float(input("Tuổi: "))
 anaemia = int(input("Thiếu máu (anaemia) (0=không, 1=có): "))
-creatinine_phosphokinase = float(input("CPK (creatinine_phosphokinase): "))
+creatinine_phosphokinase = float(input("CPK (creatinine_phosphokinase): ")) #~30–150 for adult females, ~50–200 for adult males
 diabetes = int(input("Tiểu đường (diabetes) (0=không, 1=có): "))
-ejection_fraction = float(input("Ejection fraction (%): "))
+ejection_fraction = float(input("Ejection fraction (%): ")) # normal is 55% or higher
 high_blood_pressure = int(input("Cao huyết áp (high_blood_pressure) (0=không,1=có): "))
-platelets = float(input("Số lượng tiểu cầu (platelets): "))
-serum_creatinine = float(input("Serum creatinine: "))
-serum_sodium = float(input("Serum sodium: "))
+platelets = float(input("Số lượng tiểu cầu (platelets): ")) #normal range is 150,000 to 450,000 platelets per microliter of blood
+serum_creatinine = float(input("Serum creatinine: ")) #normal range is approximately 0.6 to 1.2 milligrams per deciliter (mg/dL) for adult
+serum_sodium = float(input("Serum sodium: ")) #normal range is 135-145 milliequivalents per liter (mEq/L)
 sex = int(input("Giới tính (sex) (0=Nữ, 1=Nam): "))
 smoking = int(input("Hút thuốc (smoking) (0=không, 1=có): "))
 time = float(input("Thời gian theo dõi (time): "))
 
-# 3. Tạo DataFrame từ dữ liệu nhập
+# 3. Tạo DataFrame từ dữ liệu nhập - map all inputs to a single row dataframe
 new_patient = pd.DataFrame([[
     age, anaemia, creatinine_phosphokinase, diabetes,
     ejection_fraction, high_blood_pressure, platelets,
@@ -41,5 +41,5 @@ probability = model.predict_proba(new_patient_scaled)[0][1]
 
 # 6. Hiển thị kết quả
 print("\n=== Kết quả dự đoán ===")
-print(f"Dự đoán DEATH_EVENT: {prediction} (0=Sống, 1=Tử vong)")
+print(f"Dự đoán DEATH_EVENT: {"Tử vong" if prediction == 1 else "Sống"}")
 print(f"Xác suất tử vong: {probability * 100:.2f}%")
