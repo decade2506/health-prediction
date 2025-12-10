@@ -1,3 +1,4 @@
+#idk, I get the how it work but it's kinda hard to test rn
 import random
 def train_test(X, Y, test_size = 0.3): #split data để train và test
      data = list(zip(X, Y))

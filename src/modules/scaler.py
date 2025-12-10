@@ -1,4 +1,5 @@
 #Template scaler for 1 dimensional only
+#Might need to improve for multi-dimensional data
 def scaler(x): #Chuẩn hóa từ 0 đến 1
     x_min = min(x)
     x_max = max(x)

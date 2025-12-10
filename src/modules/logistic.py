@@ -1,4 +1,4 @@
-#Template?
+#Template to improve upon
 import pandas as pd
 def sigmoid(z): #Sigma boy :))
     return 1/(1 + pd.exp(-z))
