@@ -42,4 +42,4 @@ probability = model.predict_proba(new_patient_scaled)[0][1]
 # 6. Hiển thị kết quả
 print("\n=== Kết quả dự đoán ===")
 print(f"Dự đoán DEATH_EVENT: {prediction} (0=Sống, 1=Tử vong)")
-print(f"Xác suất tử vong: {probability:.2f}")
+print(f"Xác suất tử vong: {probability * 100:.2f}%")
