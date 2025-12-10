@@ -2,8 +2,13 @@ import pandas as pd
 from joblib import load #only use this for loading saved model and scaler
 
 # 1. Load model và scaler đã lưu
-model = load("./logistic_model.pkl")
-scaler = load("./scaler.pkl")
+# Cheat file
+# model = load("./logistic_model.pkl")
+# scaler = load("./scaler.pkl")
+
+# File made from scratch
+model = load("./logistic_model_2.pkl")
+scaler = load("./scaler_2.pkl")
 
 print("=== Dự đoán nguy cơ tử vong do Heart Failure cho 1 bệnh nhân mới ===")
 
