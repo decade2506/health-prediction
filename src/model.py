@@ -12,4 +12,5 @@ Y = data_frame["DEATH_EVENT"]
 
 X_train, Y_train, X_test, Y_test = ts.train_test(X.values.tolist(), Y.values.tolist(), test_size=0.3)
 
-w,b = l.logisticRegression(X_train, Y_train, lr=0.01, steps=1000)
+model = l.MyLogisticRegression(lr=0.01, steps=1000)
+model.logisticRegression(X_train, Y_train)
