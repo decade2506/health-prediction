@@ -1,0 +1,4 @@
+# Ignore local test helper
+/src/test.py
+
+.env
