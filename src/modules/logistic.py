@@ -1,5 +1,5 @@
-#Template to improve upon
-#class cuz why not, right???
+# Template to improve upon
+# Logistic Regression from scratch
 import pandas as pd
 class MyLogisticRegression:
     def __init__(self, lr=0.1, steps=1000):
@@ -9,6 +9,8 @@ class MyLogisticRegression:
         self.bias = None
     def sigmoid(self,z): #Sigma boy :))
         return 1/(1 + pd.exp(-z))
+    
+    #Like the name brooo
     def logisticRegression(self, X, Y):
         m, n = X.shape
         W = pd.zeros(n)
@@ -22,9 +24,13 @@ class MyLogisticRegression:
             bias = bias - self.lr * descent_b
         self.W = W
         self.bias = bias
+    
+    # Tỉ lệ dự đoán
     def predict_proba(self, X):
         z = pd.dot(X, self.W) + self.bias
         prob = self.sigmoid(z)
         return prob
+    
+    # Dự đoán nếu xác suất >= 0.5 thì là 1, ngược lại là 0
     def predict(self, X):
         return (self.predict_proba(X) >= 0.5).astype(int)
