@@ -29,8 +29,18 @@ class MyLogisticRegression:
     def predict_proba(self, X):
         z = np.dot(X, self.W) + self.bias
         prob = self.sigmoid(z)
+        prob = np.atleast_1d(prob)
+        if prob.ndim == 1:
+            prob = np.column_stack((1 - prob, prob))
+        elif np.isscalar(prob):
+            p = float(prob)
+            prob = np.array([[1 - p, p]])
         return prob
     
     # Dự đoán nếu xác suất >= 0.5 thì là 1, ngược lại là 0
     def predict(self, X):
-        return (self.predict_proba(X) >= 0.5).astype(int)
+        probs = self.predict_proba(X)
+        if probs.ndim == 2 and probs.shape[1] >= 2:
+            return (probs[:, 1] >= 0.5).astype(int)
+        arr = np.atleast_1d(probs).ravel()
+        return (arr >= 0.5).astype(int)
