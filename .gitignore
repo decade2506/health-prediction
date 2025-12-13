@@ -2,3 +2,5 @@
 /src/test.py
 
 .env
+
+/src/modules/__pycache__
