@@ -2,7 +2,6 @@ import tkinter as tk
 from tkinter import messagebox
 import pandas as pd
 import joblib
-import numpy as np
 
 # =============================
 # Load model & scaler

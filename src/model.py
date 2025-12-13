@@ -6,6 +6,9 @@ import modules.testSplit as ts
 # only use these imports for saving files and testing
 from joblib import dump
 from sklearn.metrics import accuracy_score, classification_report
+#Confusion Matrix
+from sklearn.metrics import confusion_matrix, ConfusionMatrixDisplay
+import matplotlib.pyplot as plt
 
 # Đọc dữ liệu từ csv
 data_frame = pd.read_csv("./heart_failure_clinical_records_dataset.csv")
@@ -38,3 +41,19 @@ dump(model, "./logistic_model_2.pkl")
 dump(scaler, "./scaler_2.pkl")
 
 print("Lưu thành công :D")
+
+
+# Tạo ma trận nhầm lẫn
+cm = confusion_matrix(Y_test, Y_pred)
+
+print("Confusion Matrix:")
+print(cm)
+
+disp = ConfusionMatrixDisplay(
+    confusion_matrix=cm,
+    display_labels=["Sống", "Tử vong"]
+)
+
+disp.plot(cmap="Blues")
+plt.title("Ma trận nhầm lẫn - Heart Failure Prediction")
+plt.show()
