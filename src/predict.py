@@ -41,7 +41,7 @@ def predict():
         prediction = model.predict(new_patient_scaled)[0]
         probability = model.predict_proba(new_patient_scaled)[0][1]
 
-        result_text = "TỬ VONG" if prediction == 1 else "SỐNG"
+        result_text = "CHẾT CỤ NÓ RỒI CON ƠI" if prediction == 1 else "SỐNG"
         result_label.config(
             text=f"Kết quả: {result_text}\nXác suất tử vong: {probability*100:.2f}%",
             fg="red" if prediction == 1 else "green"
