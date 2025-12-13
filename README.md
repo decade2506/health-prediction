@@ -18,3 +18,4 @@ Machine Learning? I doubt it
 
 ## Side notes
 - All these medical terms are making me dizzy fr fr :sweat:
+- Why am I doing Machine Learing again?
