@@ -1,9 +1,9 @@
 # Ignore local test helper
-/src/test.py
+test.py
 
 .env
 
-/src/modules/__pycache__
+/modules/__pycache__
 
 # Ignore pickle files
 *.pkl

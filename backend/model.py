@@ -11,7 +11,7 @@ from sklearn.metrics import confusion_matrix, ConfusionMatrixDisplay
 import matplotlib.pyplot as plt
 
 # Đọc dữ liệu từ csv
-data_frame = pd.read_csv("./heart_failure_clinical_records_dataset.csv")
+data_frame = pd.read_csv("heart_failure_clinical_records_dataset.csv")
 X = data_frame.drop("DEATH_EVENT", axis=1)
 Y = data_frame["DEATH_EVENT"]
 
@@ -37,8 +37,8 @@ report = classification_report(Y_test, Y_pred)
 print(f'Báo cáo phân loại:\n {report}')
 
 # Lưu model và scaler đã train
-dump(model, "./logistic_model.pkl")
-dump(scaler, "./scaler.pkl")
+dump(model, "logistic_model.pkl")
+dump(scaler, "scaler.pkl")
 
 print("Lưu thành công :D")
 
