@@ -37,8 +37,8 @@ report = classification_report(Y_test, Y_pred)
 print(f'Báo cáo phân loại:\n {report}')
 
 # Lưu model và scaler đã train
-dump(model, "./logistic_model_2.pkl")
-dump(scaler, "./scaler_2.pkl")
+dump(model, "./logistic_model.pkl")
+dump(scaler, "./scaler.pkl")
 
 print("Lưu thành công :D")
 

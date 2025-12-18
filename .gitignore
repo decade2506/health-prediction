@@ -4,3 +4,6 @@
 .env
 
 /src/modules/__pycache__
+
+# Ignore pickle files
+*.pkl
