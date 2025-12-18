@@ -6,8 +6,8 @@ import joblib
 # =============================
 # Load model & scaler
 # =============================
-model = joblib.load("logistic_model.pkl")
-scaler = joblib.load("scaler.pkl")
+model = joblib.load("backend/logistic_model.pkl")
+scaler = joblib.load("backend/scaler.pkl")
 
 # =============================
 # Prediction function
