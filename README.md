@@ -25,23 +25,6 @@ python -m pip install --upgrade pip
 python -m pip install joblib pandas scikit-learn numpy matplotlib
 ```
 
-## Project Structure
-
-```
-health-prediction/
-├── README.md
-├── heart_failure_clinical_records_dataset.csv  # Training dataset
-├── logistic_model.pkl                         # (gitignored)Trained model
-├── scaler.pkl                                 # (gitignored)Fitted scaler
-└── src/
-    ├── model.py                    # Train the model
-    ├── predict.py                  # Make predictions on new data
-    └── modules/
-        ├── logistic.py             # MyLogisticRegression class
-        ├── scaler.py               # MyScaler class
-        └── testSplit.py            # Train/test split utility
-```
-
 ## Usage
 
 ### 1. Train the Model
@@ -70,7 +53,7 @@ Follow the interactive prompts to enter patient clinical values. The model will 
 - Predicted class (Sống/Tử vong)
 - Probability of death event
 
-## API
+## Modules
 
 ### `MyLogisticRegression`
 - `logisticRegression(X, Y)` - Train the model
